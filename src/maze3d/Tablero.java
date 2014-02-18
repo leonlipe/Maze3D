@@ -61,7 +61,7 @@ public class Tablero {
                                     {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}},
                                     {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}},
                                     {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}},
-                                    {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}}};
+                                    {{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,1}}};
     }
     
     
@@ -104,10 +104,15 @@ public class Tablero {
         return resultado;
     }
     
-    private void verificaPosicion(Integer x, Integer y, Integer z) throws Exception{
+    private Integer verificaPosicion(Integer x, Integer y, Integer z) throws Exception{
+        
       switch (tablero[y][x][z]){
           case 1:
               throw new Exception("Hay una pared.");
+          case 2:    
+              return 1;
+          default: return 0;    
+              
              
       }
     }
