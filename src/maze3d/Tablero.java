@@ -128,11 +128,9 @@ public class Tablero {
             case Tablero.NORTE:
                 giraIzquierdaNorte();
                 break;
-
             case Tablero.ESTE:
                 giraIzquierdaEste();
                 break;
-
             case Tablero.SUR:
                 giraIzquierdaSur();
                 break;
@@ -144,6 +142,75 @@ public class Tablero {
                 break;
             case Tablero.FRENTE:
                 giraIzquierdaFrente();
+                break;
+        }
+    }
+
+    private void giraDerecha() {
+        switch (orientacion) {
+            case Tablero.NORTE:
+                giraDerechaNorte();
+                break;
+            case Tablero.ESTE:
+                giraDerechaEste();
+                break;
+            case Tablero.SUR:
+                giraDerechaSur();
+                break;
+            case Tablero.OESTE:
+                giraDerechaOeste();
+                break;
+            case Tablero.FONDO:
+                giraDerechaFondo();
+                break;
+            case Tablero.FRENTE:
+                giraDerechaFrente();
+                break;
+        }
+    }
+
+    private void giraArriba() {
+        switch (orientacion) {
+            case Tablero.NORTE:
+                giraArribaNorte();
+                break;
+            case Tablero.ESTE:
+                giraArribaEste();
+                break;
+            case Tablero.SUR:
+                giraArribaSur();
+                break;
+            case Tablero.OESTE:
+                giraArribaOeste();
+                break;
+            case Tablero.FONDO:
+                giraArribaFondo();
+                break;
+            case Tablero.FRENTE:
+                giraArribaFrente();
+                break;
+        }
+    }
+
+    private void giraAbajo() {
+        switch (orientacion) {
+            case Tablero.NORTE:
+                giraAbajoNorte();
+                break;
+            case Tablero.ESTE:
+                giraAbajoEste();
+                break;
+            case Tablero.SUR:
+                giraAbajoSur();
+                break;
+            case Tablero.OESTE:
+                giraAbajoOeste();
+                break;
+            case Tablero.FONDO:
+                giraAbajoFondo();
+                break;
+            case Tablero.FRENTE:
+                giraAbajoFrente();
                 break;
         }
     }
@@ -192,16 +259,16 @@ public class Tablero {
     private void giraIzquierdaSur() {
         switch (direccion_vista) {
             case Tablero.FRENTE:
-                direccion_vista = Tablero.ESTE;
-                break;
-            case Tablero.ESTE:
-                direccion_vista = Tablero.FONDO;
-                break;
-            case Tablero.FONDO:
                 direccion_vista = Tablero.OESTE;
                 break;
-            case Tablero.OESTE:
+            case Tablero.ESTE:
                 direccion_vista = Tablero.FRENTE;
+                break;
+            case Tablero.FONDO:
+                direccion_vista = Tablero.ESTE;
+                break;
+            case Tablero.OESTE:
+                direccion_vista = Tablero.FONDO;
                 break;
 
         }
@@ -259,6 +326,172 @@ public class Tablero {
                 break;
 
         }
+    }
+
+    //**** DERECHA
+    private void giraDerechaNorte() {
+        switch (direccion_vista) {
+            case Tablero.ESTE:
+                direccion_vista = Tablero.FRENTE;
+                break;
+            case Tablero.FONDO:
+                direccion_vista = Tablero.ESTE;
+                break;
+            case Tablero.OESTE:
+                direccion_vista = Tablero.FONDO;
+                break;
+            case Tablero.FRENTE:
+                direccion_vista = Tablero.OESTE;
+                break;
+
+        }
+
+    }
+
+    private void giraDerechaEste() {
+        switch (direccion_vista) {
+            case Tablero.FRENTE:
+                direccion_vista = Tablero.NORTE;
+                break;
+            case Tablero.SUR:
+                direccion_vista = Tablero.FRENTE;
+                break;
+            case Tablero.FONDO:
+                direccion_vista = Tablero.SUR;
+                break;
+            case Tablero.NORTE:
+                direccion_vista = Tablero.FONDO;
+                break;
+
+        }
+    }
+
+    private void giraDerechaSur() {
+        switch (direccion_vista) {
+            case Tablero.FRENTE:
+                direccion_vista = Tablero.ESTE;
+                break;
+            case Tablero.ESTE:
+                direccion_vista = Tablero.FONDO;
+                break;
+            case Tablero.FONDO:
+                direccion_vista = Tablero.OESTE;
+                break;
+            case Tablero.OESTE:
+                direccion_vista = Tablero.FRENTE;
+                break;
+
+        }
+    }
+
+    private void giraDerechaOeste() {
+        switch (direccion_vista) {
+            case Tablero.FRENTE:
+                direccion_vista = Tablero.SUR;
+                break;
+            case Tablero.NORTE:
+                direccion_vista = Tablero.FRENTE;
+                break;
+            case Tablero.FONDO:
+                direccion_vista = Tablero.NORTE;
+                break;
+            case Tablero.SUR:
+                direccion_vista = Tablero.FONDO;
+                break;
+
+        }
+    }
+
+    private void giraDerechaFondo() {
+        switch (direccion_vista) {
+            case Tablero.NORTE:
+                direccion_vista = Tablero.OESTE;
+                break;
+            case Tablero.ESTE:
+                direccion_vista = Tablero.NORTE;
+                break;
+            case Tablero.SUR:
+                direccion_vista = Tablero.ESTE;
+                break;
+            case Tablero.OESTE:
+                direccion_vista = Tablero.SUR;
+                break;
+
+        }
+    }
+
+    private void giraDerechaFrente() {
+        switch (direccion_vista) {
+            case Tablero.NORTE:
+                direccion_vista = Tablero.ESTE;
+                break;
+            case Tablero.OESTE:
+                direccion_vista = Tablero.NORTE;
+                break;
+            case Tablero.SUR:
+                direccion_vista = Tablero.OESTE;
+                break;
+            case Tablero.ESTE:
+                direccion_vista = Tablero.SUR;
+                break;
+
+        }
+    }
+
+    //*** ARRIBA
+    private void giraArribaNorte() {
+        direccion_vista = Tablero.NORTE;
+    }
+
+    private void giraArribaEste() {
+        direccion_vista = Tablero.ESTE;
+    }
+
+    private void giraArribaSur() {
+        direccion_vista = Tablero.SUR;
+    }
+
+    private void giraArribaOeste() {
+        direccion_vista = Tablero.OESTE;
+
+    }
+
+    private void giraArribaFondo() {
+        direccion_vista = Tablero.FONDO;
+
+    }
+
+    private void giraArribaFrente() {
+        direccion_vista = Tablero.FRENTE;
+
+    }
+
+    // **** ABAJO
+    private void giraAbajoNorte() {
+        direccion_vista = Tablero.SUR;
+    }
+
+    private void giraAbajoEste() {
+        direccion_vista = Tablero.OESTE;
+    }
+
+    private void giraAbajoSur() {
+        direccion_vista = Tablero.NORTE;
+    }
+
+    private void giraAbajoOeste() {
+        direccion_vista = Tablero.ESTE;
+
+    }
+
+    private void giraAbajoFondo() {
+        direccion_vista = Tablero.FRENTE;
+
+    }
+
+    private void giraAbajoFrente() {
+        direccion_vista = Tablero.FONDO;
+
     }
 
 }
