@@ -5,6 +5,15 @@
  */
 package maze3d;
 
+import com.jme3.app.SimpleApplication;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.shape.Box;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author leon
@@ -17,6 +26,10 @@ public class Tablero {
     public static final int SUR = 3;
     public static final int FONDO = 4;
     public static final int FRENTE = 5;
+    
+    public static final Integer PARED=1;
+    public static final Integer ENTRADA=2;
+    public static final Integer SALIDA=3;
 
     private Integer[][][] tablero; // y, x, z
 
@@ -52,11 +65,15 @@ public class Tablero {
     }
 
     private void inicializaTablero() {
-        this.tablero = new Integer[][][]{{{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
-        {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
-        {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
-        {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
-        {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 1}}};
+        this.tablero = new Integer[][][]{ // Normal:i,j,z || Para imprimir (j,i,z)  ==> x,y,z
+            //El primer dos está en 0,0,0, la pared siguiente
+            //está en 0,0,1
+   /*i0*/{/*j0*/{/*z0*/1, /*z1*/1, /*z2*/1, 0, 0},/*j1*/{1, 1, 1, 1, 1}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
+   /*i1*/{/*j0*/{1, 1, 1, 0, 1}, /*j1*/{1, 1, 1, 1, 1}, {0, 0, 1, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
+        {{1, 1, 1, 0, 1}, {1, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
+        {{1, 1, 1, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}},
+        {{1, 1, 1, 0, 1}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 3}}
+        };
     }
 
     public Integer avanzar() throws Exception {
@@ -493,5 +510,45 @@ public class Tablero {
         direccion_vista = Tablero.FONDO;
 
     }
+
+    public void muestraTablero(SimpleApplication app) {
+        for(int i=0; i< topey;i++){
+            for(int j=0; j<topex;j++){
+               for(int z=0; z<topez;z++){
+                   if (tablero[i][j][z]==Tablero.PARED){
+                     System.out.println("Coordenada:{x:" + j + ", y:" + i + ", z:" + z + "}");  
+                     app.getRootNode().attachChild(makeCube("a Dragon",app,ColorRGBA.randomColor(), j*2, i*2 , z*2));
+                   }
+               } 
+            }
+        }
+        
+       
+       // app.getRootNode().attachChild(makeFloor(app));
+    }
+
+    /**
+     * A floor to show that the "shot" can go through several objects.
+     */
+    protected Geometry makeFloor(SimpleApplication app) {
+        Box box = new Box(15, .2f, 15);
+        Geometry floor = new Geometry("the Floor", box);
+        floor.setLocalTranslation(0, -4, -5);
+        Material mat1 = new Material(app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+        mat1.setColor("Color", ColorRGBA.Gray);
+        floor.setMaterial(mat1);
+        return floor;
+    }
+    
+     /** A cube object for target practice */
+  protected Geometry makeCube(String name,SimpleApplication app,ColorRGBA color, float x, float y, float z) {
+    Box box = new Box(1, 1, 1);
+    Geometry cube = new Geometry(name, box);
+    cube.setLocalTranslation(x, y, z);
+    Material mat1 = new Material(app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
+    mat1.setColor("Color", color);
+    cube.setMaterial(mat1);
+    return cube;
+  }
 
 }
